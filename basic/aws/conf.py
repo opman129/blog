@@ -4,6 +4,7 @@ AWS_SECRET_ACCESS_KEY = "SCGVcuMZNpazva9fMh3AE15mWApkHDdN5uw64+jG"
 AWS_FILE_EXPIRE = 200
 AWS_PRELOAD_METADATA = True
 AWS_QUERYSTRING_AUTH = True
+AWS_DEFAULT_ACL = None
 
 DEFAULT_FILE_STORAGE = 'basic.aws.utils.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'basic.aws.utils.StaticRootS3BotoStorage'
@@ -23,3 +24,4 @@ AWS_HEADERS = {
     'Expires': expires,
     'Cache-Control': 'max-age=%d' % (int(two_months.total_seconds()), ),
 }
+
