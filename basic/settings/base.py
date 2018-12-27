@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'project',
     'fountain',
     'crispy_forms',
+    'storages',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
