@@ -139,22 +139,13 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     #'/var/www/static/',
 ]
-
 #STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
 
 #MEDIA_URL = '/media/'
 #MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 
-CORS_REPLACE_HTTPS_REFERER      = True
-HOST_SCHEME                     = "https://"
-SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT             = True
-SESSION_COOKIE_SECURE           = True
-CSRF_COOKIE_SECURE              = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
-SECURE_HSTS_SECONDS             = 1000000
-SECURE_FRAME_DENY               = True
-
+DEFAULT_FILE_STORAGE = 'basic.aws.utils.MediaRootS3BotoStorage'
+STATICFILES_STORAGE = 'basic.aws.utils.StaticRootS3BotoStorage'
 
 #STATIC AWS
 import datetime
@@ -164,11 +155,9 @@ AWS_FILE_EXPIRE = 200
 AWS_PRELOAD_METADATA = True
 AWS_QUERYSTRING_AUTH = True
 AWS_DEFAULT_ACL = None
-
-DEFAULT_FILE_STORAGE = 'basic.aws.utils.MediaRootS3BotoStorage'
-STATICFILES_STORAGE = 'basic.aws.utils.StaticRootS3BotoStorage'
 AWS_STORAGE_BUCKET_NAME = 'fountain-tech'
-S3DIRECT_REGION = 'us-west-2'
+S3DIRECT_REGION = 'us-east'
+AWS_LOCATION = 'static'
 S3_URL = '//%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = '//%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 MEDIA_ROOT = MEDIA_URL
@@ -184,3 +173,12 @@ AWS_HEADERS = {
     'Cache-Control': 'max-age=%d' % (int(two_months.total_seconds()), ),
 }
 
+CORS_REPLACE_HTTPS_REFERER      = True
+HOST_SCHEME                     = "https://"
+SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT             = True
+SESSION_COOKIE_SECURE           = True
+CSRF_COOKIE_SECURE              = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
+SECURE_HSTS_SECONDS             = 1000000
+SECURE_FRAME_DENY               = True
